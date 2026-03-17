@@ -3,5 +3,12 @@
  */
 package band.kessoku.gradle.extension;
 
+import org.gradle.api.provider.Property;
+
 public interface KessokuExtension {
+
+    Property<String> minecraftVersion();
+
+    Property<Boolean> reobfuscate();
+
 }

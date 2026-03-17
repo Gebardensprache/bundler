@@ -6,6 +6,7 @@ okhttp = "5.3.2"
 lombok = "1.18.32"
 
 mergetool = "26.1.0-bundler"
+tiny-remapper = "0.13.0"
 
 [plugins]
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
@@ -16,3 +17,4 @@ okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
 
 mergetool = { module = "net.neoforged:mergetool", version.ref = "mergetool"}
+tiny-remapper = { module = "net.fabricmc:tiny-remapper", version.ref = "tiny-remapper" }

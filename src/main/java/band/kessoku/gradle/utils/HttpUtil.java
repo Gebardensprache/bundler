@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.function.Consumer;
 
 @UtilityClass
-public class HttpUtils {
+public class HttpUtil {
 
     public static final OkHttpClient client = new OkHttpClient();
 

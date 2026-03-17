@@ -36,11 +36,11 @@ public class KessokuGradlePlugin implements Plugin<PluginAware> {
 	}
 
 	private void apply(final Project project) {
-		// Apply default plugins
 		project.getPlugins().apply(JavaLibraryPlugin.class);
 
-		// Lifecycle bundler version
 		project.getLogger().lifecycle("Kessoku Bundler: " + VERSION);
+
+		Repositories.apply(project);
 
 		if (project == project.getRootProject()) {
 			project.getExtensions().add("kessoku", KessokuExtension.class);

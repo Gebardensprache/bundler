@@ -26,6 +26,9 @@ gradlePlugin {
 repositories {
     mavenCentral()
     mavenLocal()
+    maven {
+        url 'https://maven.fabricmc.net'
+    }
 }
 
 dependencies {
@@ -38,6 +41,7 @@ dependencies {
     annotationProcessor(libs.lombok)
 
     implementation(libs.mergetool)
+    implementation(libs.tiny.remapper)
 
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
