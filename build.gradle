@@ -1,20 +1,79 @@
 plugins {
     id 'java'
+    id 'java-library'
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+    id 'idea'
+    alias(libs.plugins.spotless)
 }
 
 group = 'band.kessoku.gradle'
-version = '1.0-SNAPSHOT'
+version = "${project.project_version}-${project.version_state}"
+
+base {
+    archivesName = project.project_name
+}
+
+gradlePlugin {
+    plugins {
+        create("bundler") {
+            id = "band.kessoku.gradle.bundler"
+            implementationClass = "band.kessoku.gradle.KessokuGradlePlugin"
+        }
+    }
+}
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
+    implementation(gradleApi())
+
+    implementation(libs.gson)
+    implementation(libs.mergetool)
+
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+jar {
+    manifest {
+        attributes(
+                'Implementation-Title': project_name,
+                'Implementation-Version': project.version,
+                'Implementation-Vendor': "KessokuTeaTime"
+        )
+    }
+}
+
+java {
+    withSourcesJar()
+}
+
+spotless {
+    java {
+        googleJavaFormat().aosp().formatJavadoc(true).reorderImports(true)
+        formatAnnotations()
+        removeUnusedImports()
+        leadingSpacesToTabs()
+        endWithNewline()
+        target 'src/main/band/kessoku/**/*.java'
+    }
+}
+
 test {
     useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+}
+
+tasks.register('testTask') {
+    doFirst {
+        println(getRootProject() == project)
+    }
 }

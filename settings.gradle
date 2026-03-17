@@ -1,1 +1,12 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenLocal()
+    }
+}
+
 rootProject.name = 'bundler'
+
+include 'testmod'
+include 'testmod:modulea'
+include 'testmod:moduleb'
