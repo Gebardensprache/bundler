@@ -5,6 +5,9 @@ package band.kessoku.gradle;
 
 import band.kessoku.gradle.extension.KessokuExtension;
 import band.kessoku.gradle.extension.KessokuSubExtension;
+import band.kessoku.gradle.minecraft.manifest.version.Arguments;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.initialization.Settings;
@@ -15,6 +18,8 @@ import java.util.Objects;
 
 @SuppressWarnings("unused")
 public class KessokuGradlePlugin implements Plugin<PluginAware> {
+
+	public static final Gson GSON;
 
 	public static final String VERSION = Objects.requireNonNullElse(
 			KessokuGradlePlugin.class.getPackage().getImplementationVersion(),
@@ -45,6 +50,13 @@ public class KessokuGradlePlugin implements Plugin<PluginAware> {
 	}
 
 	private void apply(final Settings settings) {
+	}
+
+	static {
+		GSON = new GsonBuilder()
+				.setPrettyPrinting()
+				.registerTypeAdapter(Arguments.Argument.class, new Arguments.ArgumentDeserializer())
+				.create();
 	}
 
 }

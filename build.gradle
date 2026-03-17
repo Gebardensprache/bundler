@@ -32,6 +32,11 @@ dependencies {
     implementation(gradleApi())
 
     implementation(libs.gson)
+    implementation(libs.okhttp)
+
+    compileOnly(libs.lombok)
+    annotationProcessor(libs.lombok)
+
     implementation(libs.mergetool)
 
     testImplementation platform('org.junit:junit-bom:5.10.0')
