@@ -1,0 +1,4 @@
+plugins {
+    id 'java'
+    id 'band.kessoku.gradle.bundler' version '26.1.0-preview'
+}
